@@ -1,0 +1,48 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageHelper } from 'app/core';
+
+import { ConcesionarioSharedModule } from 'app/shared';
+import {
+  CompraVentaComponent,
+  CompraVentaDetailComponent,
+  CompraVentaUpdateComponent,
+  CompraVentaDeletePopupComponent,
+  CompraVentaDeleteDialogComponent,
+  compraVentaRoute,
+  compraVentaPopupRoute
+} from './';
+import { NgbdModalContent } from './compra-venta-modal.component';
+
+const ENTITY_STATES = [...compraVentaRoute, ...compraVentaPopupRoute];
+
+@NgModule({
+  imports: [ConcesionarioSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [
+    CompraVentaComponent,
+    CompraVentaDetailComponent,
+    CompraVentaUpdateComponent,
+    CompraVentaDeleteDialogComponent,
+    CompraVentaDeletePopupComponent,
+    NgbdModalContent
+  ],
+  entryComponents: [
+    CompraVentaComponent,
+    CompraVentaUpdateComponent,
+    CompraVentaDeleteDialogComponent,
+    CompraVentaDeletePopupComponent,
+    NgbdModalContent
+  ],
+  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class ConcesionarioCompraVentaModule {
+  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
+    this.languageHelper.language.subscribe((languageKey: string) => {
+      if (languageKey !== undefined) {
+        this.languageService.changeLanguage(languageKey);
+      }
+    });
+  }
+}

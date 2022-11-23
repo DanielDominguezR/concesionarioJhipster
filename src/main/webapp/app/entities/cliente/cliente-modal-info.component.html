@@ -1,0 +1,43 @@
+<form name="deleteForm" (ngSubmit)="confirmInfo(cliente.id)">
+<div class="modal-header">
+    <h4 class="modal-title" >Datos de cliente</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            (click)="clear()">&times;</button>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="concesionarioApp.cliente.detail.title">Cliente</span> {{cliente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="concesionarioApp.cliente.dni">Dni</span></dt>
+                <dd>
+                    <span>{{cliente.dni}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.cliente.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{cliente.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.cliente.apellido">Apellido</span></dt>
+                <dd>
+                    <span>{{cliente.apellido}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.cliente.fechaNacimiento">Fecha Nacimiento</span></dt>
+                <dd>
+                    <span>{{cliente.fechaNacimiento}}</span>
+                </dd>
+            </dl>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button id="jhi-confirm-delete-cliente" type="submit" class="btn btn-warning">
+                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span>Confirm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
