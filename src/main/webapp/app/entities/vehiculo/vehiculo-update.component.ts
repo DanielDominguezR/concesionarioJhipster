@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,13 +6,14 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { IVehiculo, Vehiculo } from 'app/shared/model/vehiculo.model';
 import { VehiculoService } from './vehiculo.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-vehiculo-update',
   templateUrl: './vehiculo-update.component.html'
 })
 export class VehiculoUpdateComponent implements OnInit {
-  vehiculo: IVehiculo;
+  @Input() vehiculo: IVehiculo;
   isSaving: boolean;
   dateDp: any;
 
@@ -26,14 +27,23 @@ export class VehiculoUpdateComponent implements OnInit {
     date: []
   });
 
-  constructor(protected vehiculoService: VehiculoService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
-
+  constructor(
+    protected vehiculoService: VehiculoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected activeModal: NgbActiveModal
+  ) {}
+  close() {
+    this.activeModal.dismiss('cancel');
+  }
   ngOnInit() {
     this.isSaving = false;
-    this.activatedRoute.data.subscribe(({ vehiculo }) => {
-      this.updateForm(vehiculo);
-      this.vehiculo = vehiculo;
-    });
+
+    if (!this.vehiculo) {
+      this.vehiculo = new Vehiculo();
+    }
+
+    this.updateForm(this.vehiculo);
   }
 
   updateForm(vehiculo: IVehiculo) {
@@ -60,6 +70,7 @@ export class VehiculoUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.vehiculoService.create(vehiculo));
     }
+    this.activeModal.close('Datos insertados con exito');
   }
 
   private createFromForm(): IVehiculo {

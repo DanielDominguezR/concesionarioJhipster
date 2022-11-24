@@ -13,6 +13,7 @@ import {
   vehiculoRoute,
   vehiculoPopupRoute
 } from './';
+import { NgbdModalContent } from './vehiculo-info.component';
 
 const ENTITY_STATES = [...vehiculoRoute, ...vehiculoPopupRoute];
 
@@ -23,9 +24,16 @@ const ENTITY_STATES = [...vehiculoRoute, ...vehiculoPopupRoute];
     VehiculoDetailComponent,
     VehiculoUpdateComponent,
     VehiculoDeleteDialogComponent,
-    VehiculoDeletePopupComponent
+    VehiculoDeletePopupComponent,
+    NgbdModalContent
   ],
-  entryComponents: [VehiculoComponent, VehiculoUpdateComponent, VehiculoDeleteDialogComponent, VehiculoDeletePopupComponent],
+  entryComponents: [
+    VehiculoComponent,
+    VehiculoUpdateComponent,
+    VehiculoDeleteDialogComponent,
+    VehiculoDeletePopupComponent,
+    NgbdModalContent
+  ],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

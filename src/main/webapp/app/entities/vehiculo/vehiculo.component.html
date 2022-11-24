@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="concesionarioApp.vehiculo.home.title">Vehiculos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehiculo" [routerLink]="['/vehiculo/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehiculo" (click)="openEdit()">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="concesionarioApp.vehiculo.home.createLabel">
             Create new Vehiculo
@@ -42,7 +42,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/vehiculo', vehiculo.id, 'edit']"
+                                (click)="openEdit(vehiculo)"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
@@ -55,6 +55,7 @@
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
+                        <button type="submit" class="btn btn-warning btn-sm" (click)="open(vehiculo)"><fa-icon [icon]="'eye'"></fa-icon>Info</button>
                     </div>
                 </td>
             </tr>

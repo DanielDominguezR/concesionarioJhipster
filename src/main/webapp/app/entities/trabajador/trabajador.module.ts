@@ -13,6 +13,7 @@ import {
   trabajadorRoute,
   trabajadorPopupRoute
 } from './';
+import { NgbdModalContent } from './trabajador-info.component';
 
 const ENTITY_STATES = [...trabajadorRoute, ...trabajadorPopupRoute];
 
@@ -23,9 +24,16 @@ const ENTITY_STATES = [...trabajadorRoute, ...trabajadorPopupRoute];
     TrabajadorDetailComponent,
     TrabajadorUpdateComponent,
     TrabajadorDeleteDialogComponent,
-    TrabajadorDeletePopupComponent
+    TrabajadorDeletePopupComponent,
+    NgbdModalContent
   ],
-  entryComponents: [TrabajadorComponent, TrabajadorUpdateComponent, TrabajadorDeleteDialogComponent, TrabajadorDeletePopupComponent],
+  entryComponents: [
+    TrabajadorComponent,
+    TrabajadorUpdateComponent,
+    TrabajadorDeleteDialogComponent,
+    TrabajadorDeletePopupComponent,
+    NgbdModalContent
+  ],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
