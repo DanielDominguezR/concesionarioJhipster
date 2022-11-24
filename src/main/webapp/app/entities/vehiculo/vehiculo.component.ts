@@ -66,7 +66,7 @@ export class VehiculoComponent implements OnInit, OnDestroy {
 
     modalVehiculo.componentInstance.vehiculo = vehiculo;
     modalVehiculo.result.then(result => {
-      alert(result);
+      this.loadAll();
     });
   }
 
