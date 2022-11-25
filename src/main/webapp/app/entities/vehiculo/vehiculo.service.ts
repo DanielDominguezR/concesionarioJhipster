@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { IVehiculo } from 'app/shared/model/vehiculo.model';
+import { IVehiculo, Tipo, Vehiculo } from 'app/shared/model/vehiculo.model';
 
 type EntityResponseType = HttpResponse<IVehiculo>;
 type EntityArrayResponseType = HttpResponse<IVehiculo[]>;
@@ -38,6 +38,18 @@ export class VehiculoService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  filterWithType(tipo: Tipo, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<Vehiculo[]>(`${this.resourceUrl}/buscar-por-tipo/${tipo}`, { params: options, observe: 'response' });
+  }
+
+  // //vehiculos disponibles
+  // filtercarsDisponible(req?: any): Observable<EntityArrayResponseType> {
+  //   const options = createRequestOption(req);
+  //   return this.http
+  //     .get<Vehiculo[]>(`${this.resourceUrl}/buscar-disponible`, { params: options, observe: 'response' })
+
+  // }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

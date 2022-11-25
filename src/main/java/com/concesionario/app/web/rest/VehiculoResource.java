@@ -1,6 +1,7 @@
 package com.concesionario.app.web.rest;
 
 import com.concesionario.app.domain.Vehiculo;
+import com.concesionario.app.domain.enumeration.Tipo;
 import com.concesionario.app.service.VehiculoService;
 import com.concesionario.app.web.rest.errors.BadRequestAlertException;
 
@@ -98,6 +99,35 @@ public class VehiculoResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+     /**
+     * {@code GET  /vehiculos} : get all the vehiculos por tipo.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of vehiculos in body.
+     */
+    @GetMapping("/vehiculos/buscar-por-tipo/{tipo}")
+    public ResponseEntity<List<Vehiculo>> getCarsType(@PathVariable Tipo tipo ,Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Vehiculos");
+        Page<Vehiculo> page = vehiculoService.getCarsType(tipo,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+
+     /**
+     * {@code GET  /vehiculos} : get all the vehiculos por tipo.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of vehiculos in body.
+     */
+    // @GetMapping("/vehiculos/buscar-disponibles")
+    // public ResponseEntity<List<Vehiculo>> getDisponibles(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+    //     log.debug("REST request to get a page of Vehiculos");
+    //     Page<Vehiculo> page = vehiculoService.getDisponibles(pageable);
+    //     HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+    //     return ResponseEntity.ok().headers(headers).body(page.getContent());
+    // }
 
     /**
      * {@code GET  /vehiculos/:id} : get the "id" vehiculo.

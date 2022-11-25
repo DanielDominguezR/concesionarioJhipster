@@ -1,6 +1,13 @@
+
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="concesionarioApp.vehiculo.home.title">Vehiculos</span>
+    <span jhiTranslate="concesionarioApp.vehiculo.home.title">Vehiculo</span>
+
+        <button type="submit" class="btn btn-warning btn-sm" (click)="filterWithType()"><fa-icon [icon]="'eye'"></fa-icon>Disponibles</button>
+
+        <button type="submit" class="btn btn-warning btn-sm" (click)="open(vehiculo)"><fa-icon [icon]="'eye'"></fa-icon>No Disponibles</button>
+
+        <button type="submit" class="btn btn-warning btn-sm" (click)="open(vehiculo)"><fa-icon [icon]="'eye'"></fa-icon>Buscar</button>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehiculo" (click)="openEdit()">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="concesionarioApp.vehiculo.home.createLabel">
@@ -21,6 +28,7 @@
             <th jhiSortBy="matricula"><span jhiTranslate="concesionarioApp.vehiculo.matricula">Matricula</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="marca"><span jhiTranslate="concesionarioApp.vehiculo.marca">Marca</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date"><span jhiTranslate="concesionarioApp.vehiculo.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usado"><span>Usado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -33,6 +41,7 @@
                 <td>{{vehiculo.matricula}}</td>
                 <td>{{vehiculo.marca}}</td>
                 <td>{{vehiculo.date | date:'mediumDate'}}</td>
+                <td>{{vehiculo.usado}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

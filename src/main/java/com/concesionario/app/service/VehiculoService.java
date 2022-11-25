@@ -1,6 +1,7 @@
 package com.concesionario.app.service;
 
 import com.concesionario.app.domain.Vehiculo;
+import com.concesionario.app.domain.enumeration.Tipo;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,4 +44,8 @@ public interface VehiculoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Page<Vehiculo> getCarsType(Tipo tipo,Pageable pageable);
+
+    // Page<Vehiculo> getDisponibles(Pageable pageable);
 }

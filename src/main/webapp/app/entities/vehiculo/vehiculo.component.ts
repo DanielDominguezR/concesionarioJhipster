@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { IVehiculo, Vehiculo } from 'app/shared/model/vehiculo.model';
+import { IVehiculo, Tipo, Vehiculo } from 'app/shared/model/vehiculo.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
@@ -82,6 +82,25 @@ export class VehiculoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
+
+  filterWithType() {
+    this.vehiculoService
+      .filterWithType(Tipo.COCHE, {
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IVehiculo[]>) => this.paginateVehiculos(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  // filtercarsDisponibles() {
+  //   this.vehiculoService
+  //   .filtercarsDisponible()
+
+  // }
 
   loadPage(page: number) {
     if (page !== this.previousPage) {
