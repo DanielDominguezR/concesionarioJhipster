@@ -25,7 +25,8 @@ export class VehiculoUpdateComponent implements OnInit {
     matricula: [],
     marca: [],
     date: [],
-    usado: []
+    usado: [],
+    disponible: []
   });
 
   constructor(
@@ -85,7 +86,8 @@ export class VehiculoUpdateComponent implements OnInit {
       matricula: this.editForm.get(['matricula']).value,
       marca: this.editForm.get(['marca']).value,
       date: this.editForm.get(['date']).value,
-      usado: this.editForm.get(['usado']).value
+      usado: this.editForm.get(['usado']).value,
+      disponible: this.editForm.get(['disponible']).value
     };
     return entity;
   }

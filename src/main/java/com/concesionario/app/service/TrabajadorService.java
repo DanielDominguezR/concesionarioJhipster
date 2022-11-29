@@ -1,10 +1,13 @@
 package com.concesionario.app.service;
 
+import com.concesionario.app.domain.CompraVenta;
 import com.concesionario.app.domain.Trabajador;
+import com.concesionario.app.domain.VentasTotales;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +46,6 @@ public interface TrabajadorService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<CompraVenta> getAllVentasTotales();
 }

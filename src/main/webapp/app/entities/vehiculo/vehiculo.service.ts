@@ -43,13 +43,22 @@ export class VehiculoService {
     return this.http.get<Vehiculo[]>(`${this.resourceUrl}/buscar-por-tipo/${tipo}`, { params: options, observe: 'response' });
   }
 
-  // //vehiculos disponibles
-  // filtercarsDisponible(req?: any): Observable<EntityArrayResponseType> {
-  //   const options = createRequestOption(req);
-  //   return this.http
-  //     .get<Vehiculo[]>(`${this.resourceUrl}/buscar-disponible`, { params: options, observe: 'response' })
+  //vehiculos disponibles
+  filtercarsDisponible(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<Vehiculo[]>(`${this.resourceUrl}/buscar-disponibles`, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
 
-  // }
+  //vehiculos no disponibles
+  filtercarsnoDisponible(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<Vehiculo[]>(`${this.resourceUrl}/buscar-no-disponibles`, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

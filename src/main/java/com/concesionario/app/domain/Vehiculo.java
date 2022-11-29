@@ -45,12 +45,17 @@ public class Vehiculo implements Serializable {
     @Column(name = "jhi_date")
     private LocalDate date;
 
-    // @OneToOne
-    // @JoinColumn(unique = true)
-    // private Vehiculo coches;
 
-    // @OneToOne(mappedBy = "coches")
+    // @OneToOne(mappedBy = "vehiculo")
     // private CompraVenta venta;
+
+    // public CompraVenta getVenta() {
+    //     return venta;
+    // }
+
+    // public void setVenta(CompraVenta venta) {
+    //     this.venta = venta;
+    // }
 
     //declarar usado
     @Column(name = "usado")
@@ -62,6 +67,19 @@ public class Vehiculo implements Serializable {
 
     public void setUsado(Boolean usado) {
         this.usado = usado;
+    }
+
+    //declarar disponible
+    @Column(name = "disponible")
+    private Boolean disponible;
+
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

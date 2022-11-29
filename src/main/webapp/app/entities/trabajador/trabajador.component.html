@@ -20,6 +20,7 @@
             <th jhiSortBy="apellido"><span jhiTranslate="concesionarioApp.trabajador.apellido">Apellido</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="cargo"><span jhiTranslate="concesionarioApp.trabajador.cargo">Cargo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="telefono"><span jhiTranslate="concesionarioApp.trabajador.telefono">Telefono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ventas_totales"><span>Ventas_Totales</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,13 @@
                 <td>{{trabajador.apellido}}</td>
                 <td>{{trabajador.cargo}}</td>
                 <td>{{trabajador.telefono}}</td>
+
+                    <ng-container *ngFor="let item of ventasTotales"></ng-container>
+                    <td>{{item}}</td>
+
+
+
+
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

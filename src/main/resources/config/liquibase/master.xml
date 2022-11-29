@@ -13,4 +13,6 @@
     <include file="config/liquibase/changelog/20221122131354_added_entity_constraints_CompraVenta.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20221125131352_modified_entity_Vehiculo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221128093632_modified_entity_Vehiculo_disponible_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221128100332_modified_entity_Trabajador_total_status_ventas.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

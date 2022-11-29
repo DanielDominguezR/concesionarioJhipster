@@ -7,6 +7,11 @@ export interface ITrabajador {
   telefono?: number;
 }
 
+export interface IVentasTotales {
+  idVenta?: number;
+  totalVenta?: number;
+}
+
 export class Trabajador implements ITrabajador {
   constructor(
     public id?: number,

@@ -43,4 +43,6 @@ public interface CompraVentaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Page<CompraVenta> getventasTotales(Pageable pageable);
 }

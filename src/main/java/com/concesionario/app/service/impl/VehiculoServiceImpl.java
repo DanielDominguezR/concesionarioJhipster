@@ -75,10 +75,23 @@ public class VehiculoServiceImpl implements VehiculoService {
      */
     // @Override
 
-    // public Page<Vehiculo> getDisponibles(Pageable pageable) {
-    //     log.debug("Request to get all Vehiculos");
-    //     return vehiculoRepository.getDisponibles(pageable);
-    // }
+    public Page<Vehiculo> getDisponibles(Pageable pageable) {
+        log.debug("Request to get all Vehiculos");
+        return vehiculoRepository.getDisponibles(pageable);
+    }
+
+    /**
+     * Get all the vehiculos no disponibles.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    // @Override
+
+    public Page<Vehiculo> getnoDisponibles(Pageable pageable) {
+        log.debug("Request to get all Vehiculos");
+        return vehiculoRepository.getnoDisponibles(pageable);
+    }
 
     /**
      * Get one vehiculo by id.
@@ -103,4 +116,10 @@ public class VehiculoServiceImpl implements VehiculoService {
         log.debug("Request to delete Vehiculo : {}", id);
         vehiculoRepository.deleteById(id);
     }
+
+//     @Override
+//     public void siDisponible(Boolean dispo, Integer id) {
+//         vehiculoRepository.siDisponible(dispo,id);
+
+//     }
 }

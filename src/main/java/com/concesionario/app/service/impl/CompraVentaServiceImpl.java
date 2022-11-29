@@ -1,6 +1,11 @@
 package com.concesionario.app.service.impl;
 
 import com.concesionario.app.service.CompraVentaService;
+import com.concesionario.app.service.VehiculoService;
+import com.concesionario.app.web.rest.VehiculoResource;
+
+import antlr.collections.List;
+
 import com.concesionario.app.domain.CompraVenta;
 import com.concesionario.app.domain.Vehiculo;
 import com.concesionario.app.repository.CompraVentaRepository;
@@ -14,9 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * Service Implementation for managing {@link CompraVenta}.
- */
+
 @Service
 @Transactional
 public class CompraVentaServiceImpl implements CompraVentaService {
@@ -25,8 +28,11 @@ public class CompraVentaServiceImpl implements CompraVentaService {
 
     private final CompraVentaRepository compraVentaRepository;
 
-    public CompraVentaServiceImpl(CompraVentaRepository compraVentaRepository) {
+    private final VehiculoService vehiculoService;
+
+    public CompraVentaServiceImpl(CompraVentaRepository compraVentaRepository, VehiculoService vehiculoService) {
         this.compraVentaRepository = compraVentaRepository;
+        this.vehiculoService = vehiculoService;
     }
 
     /**
@@ -41,9 +47,11 @@ public class CompraVentaServiceImpl implements CompraVentaService {
         Vehiculo vehiculo = compraVenta.getVehiculo();
         compraVenta.setPrecioTotal((double) vehiculo.getPrecio() * 1.21 );
 
+
+
+
         return compraVentaRepository.save(compraVenta);
     }
-
     /**
      * Get all the compraVentas.
      *
@@ -81,4 +89,16 @@ public class CompraVentaServiceImpl implements CompraVentaService {
         log.debug("Request to delete CompraVenta : {}", id);
         compraVentaRepository.deleteById(id);
     }
+
+    @Override
+    public Page<CompraVenta> getventasTotales(Pageable pageable) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    // @Override
+    // public List<VentasTotales> getventasTotales() {
+    //     log.debug("Request to get all CompraVentas");
+    //     return compraVentaRepository.getventasTotales(null)();
+    // }
 }

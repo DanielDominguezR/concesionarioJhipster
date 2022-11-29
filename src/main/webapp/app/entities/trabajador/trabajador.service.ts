@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { ITrabajador } from 'app/shared/model/trabajador.model';
+import { ITrabajador, IVentasTotales } from 'app/shared/model/trabajador.model';
+import { ICompraVenta } from 'app/shared/model/compra-venta.model';
 
 type EntityResponseType = HttpResponse<ITrabajador>;
 type EntityArrayResponseType = HttpResponse<ITrabajador[]>;
+type EntityArrayResponseTypeVentasTotales = HttpResponse<ICompraVenta[]>;
 
 @Injectable({ providedIn: 'root' })
 export class TrabajadorService {
@@ -34,5 +36,11 @@ export class TrabajadorService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  //encontrar ventas totales
+  findVentas(req?: any): Observable<EntityArrayResponseTypeVentasTotales> {
+    const options = createRequestOption(req);
+    return this.http.get<ICompraVenta[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 }

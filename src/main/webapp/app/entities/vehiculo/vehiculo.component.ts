@@ -96,11 +96,31 @@ export class VehiculoComponent implements OnInit, OnDestroy {
       );
   }
 
-  // filtercarsDisponibles() {
-  //   this.vehiculoService
-  //   .filtercarsDisponible()
+  filtercarsDisponibles() {
+    this.vehiculoService
+      .filtercarsDisponible({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IVehiculo[]>) => this.paginateVehiculos(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
 
-  // }
+  filternoDisponibles() {
+    this.vehiculoService
+      .filtercarsnoDisponible({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IVehiculo[]>) => this.paginateVehiculos(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
 
   loadPage(page: number) {
     if (page !== this.previousPage) {

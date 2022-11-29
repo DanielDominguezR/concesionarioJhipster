@@ -38,6 +38,21 @@ public class Trabajador implements Serializable {
     @Column(name = "telefono")
     private Integer telefono;
 
+    // @OneToOne(mappedBy = "vendedor")
+    // private CompraVenta cVenta;
+
+    //declarar ventas totales
+    @Column(name = "ventas_totales")
+    private Integer ventas_totales;
+
+    public Integer getVentas_totales() {
+        return ventas_totales;
+    }
+
+    public void setVentas_totales(Integer ventas_totales) {
+        this.ventas_totales = ventas_totales;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

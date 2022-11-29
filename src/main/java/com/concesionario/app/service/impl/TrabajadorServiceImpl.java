@@ -1,7 +1,10 @@
 package com.concesionario.app.service.impl;
 
+import com.concesionario.app.service.CompraVentaService;
 import com.concesionario.app.service.TrabajadorService;
+import com.concesionario.app.domain.CompraVenta;
 import com.concesionario.app.domain.Trabajador;
+import com.concesionario.app.domain.VentasTotales;
 import com.concesionario.app.repository.TrabajadorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -51,6 +55,19 @@ public class TrabajadorServiceImpl implements TrabajadorService {
     public Page<Trabajador> findAll(Pageable pageable) {
         log.debug("Request to get all Trabajadors");
         return trabajadorRepository.findAll(pageable);
+    }
+
+    /**
+     * Get all ventas totales.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<CompraVenta> getAllVentasTotales() {
+
+       return trabajadorRepository.findVentasTotales();
     }
 
 

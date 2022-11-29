@@ -47,5 +47,9 @@ public interface VehiculoService {
 
     Page<Vehiculo> getCarsType(Tipo tipo,Pageable pageable);
 
-    // Page<Vehiculo> getDisponibles(Pageable pageable);
+    Page<Vehiculo> getDisponibles(Pageable pageable);
+
+    Page<Vehiculo> getnoDisponibles(Pageable pageable);
+
+    // void siDisponible(Boolean dispo, Integer id);
 }
