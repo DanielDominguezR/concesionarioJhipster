@@ -6,14 +6,19 @@
         <button type="submit" class="btn btn-warning btn-sm" (click)="filtercarsDisponibles()"><fa-icon [icon]="'eye'"></fa-icon>Disponibles</button>
 
         <button type="submit" class="btn btn-warning btn-sm" (click)="filternoDisponibles()"><fa-icon [icon]="'eye'"></fa-icon>No Disponibles</button>
-
-        <button type="submit" class="btn btn-warning btn-sm" (click)="open(vehiculo)"><fa-icon [icon]="'eye'"></fa-icon>Buscar</button>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehiculo" (click)="openEdit()">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="concesionarioApp.vehiculo.home.createLabel">
             Create new Vehiculo
             </span>
         </button>
+        <br>
+        <br>
+        <div class="form-control form-control-sm">
+        <input  id="formFileSm" type="file" (change)="onFileSelected($event)" #fileUpload/>
+        <button (click)="enviarFormulario()">Enviar</button>
+        </div>
+
     </h2>
     <jhi-alert></jhi-alert>
     <br/>

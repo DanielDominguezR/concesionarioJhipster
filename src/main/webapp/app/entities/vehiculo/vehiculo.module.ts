@@ -2,6 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ConcesionarioSharedModule } from 'app/shared';
 import {
@@ -18,7 +20,7 @@ import { NgbdModalContent } from './vehiculo-info.component';
 const ENTITY_STATES = [...vehiculoRoute, ...vehiculoPopupRoute];
 
 @NgModule({
-  imports: [ConcesionarioSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [ConcesionarioSharedModule, RouterModule.forChild(ENTITY_STATES), ReactiveFormsModule, HttpClientModule],
   declarations: [
     VehiculoComponent,
     VehiculoDetailComponent,

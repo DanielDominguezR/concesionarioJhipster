@@ -7,6 +7,7 @@ import com.concesionario.app.domain.VentasTotales;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,7 +19,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TrabajadorRepository extends JpaRepository<Trabajador, Long> {
 
-    @Query("SELECT COUNT(c) FROM CompraVenta c WHERE c.vendedor is not null group by c.vendedor")
-    List<CompraVenta>findVentasTotales();
+    @Query("SELECT count(c) FROM CompraVenta c WHERE c.vendedor IS :Trabajador")
+    Integer findVentasTotales(@Param("Trabajador") Trabajador trabajador);
+
 
 }

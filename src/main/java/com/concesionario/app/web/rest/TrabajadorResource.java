@@ -5,6 +5,7 @@ import com.concesionario.app.domain.Trabajador;
 import com.concesionario.app.domain.VentasTotales;
 import com.concesionario.app.repository.VehiculoRepository;
 import com.concesionario.app.service.TrabajadorService;
+import com.concesionario.app.service.dto.TrabajadorDTO;
 import com.concesionario.app.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -102,20 +103,20 @@ public class TrabajadorResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /trabajadors} : get todas las ventas totales.
+   /**
+     * {@code GET  /trabajadors} : get all the trabajadors.
      *
      * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of trabajadors in body.
      */
     @GetMapping("/trabajadors/ventas-totales")
-    public ResponseEntity<Integer> getAllVentasTotales(@RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<List<TrabajadorDTO>> getAllVentas(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Trabajadors");
-        List<CompraVenta> lista = trabajadorService.getAllVentasTotales();
-
-
-        return ResponseEntity.ok().body(lista.size());
+        Page<TrabajadorDTO> page = trabajadorService.findAllVentas(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
 
     /**
      * {@code GET  /trabajadors/:id} : get the "id" trabajador.

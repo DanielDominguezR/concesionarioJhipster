@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { ITrabajador, IVentasTotales, Trabajador } from 'app/shared/model/trabajador.model';
+import { ITrabajador, Trabajador } from 'app/shared/model/trabajador.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
@@ -14,6 +14,7 @@ import { NgbdModalContent } from './trabajador-info.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompraVentaService } from '../compra-venta';
 import { ICompraVenta } from 'app/shared/model/compra-venta.model';
+import { NgbdModalContentComision } from './trabajador-comision.component';
 
 @Component({
   selector: 'jhi-trabajador',
@@ -66,7 +67,7 @@ export class TrabajadorComponent implements OnInit, OnDestroy {
 
   loadAll() {
     this.trabajadorService
-      .query({
+      .findVentas({
         page: this.page - 1,
         size: this.itemsPerPage,
         sort: this.sort()
@@ -148,6 +149,15 @@ export class TrabajadorComponent implements OnInit, OnDestroy {
   findVentas() {
     this.trabajadorService.findVentas().subscribe(res => {
       this.ventasTotales = res.body;
+    });
+  }
+
+  openComision(trabajador: Trabajador) {
+    const modalTrabajo = this.modalService.open(NgbdModalContentComision);
+    modalTrabajo.componentInstance.trabajador = trabajador;
+
+    modalTrabajo.result.then(result => {
+      alert(result);
     });
   }
 }

@@ -2,6 +2,7 @@ package com.concesionario.app.service.impl;
 
 import com.concesionario.app.service.CompraVentaService;
 import com.concesionario.app.service.TrabajadorService;
+import com.concesionario.app.service.dto.TrabajadorDTO;
 import com.concesionario.app.domain.CompraVenta;
 import com.concesionario.app.domain.Trabajador;
 import com.concesionario.app.domain.VentasTotales;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Service Implementation for managing {@link Trabajador}.
@@ -58,18 +60,25 @@ public class TrabajadorServiceImpl implements TrabajadorService {
     }
 
     /**
-     * Get all ventas totales.
+     * Get all ventas de trabajadores.
      *
      * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<CompraVenta> getAllVentasTotales() {
-
-       return trabajadorRepository.findVentasTotales();
+    public Page<TrabajadorDTO> findAllVentas(Pageable pageable) {
+        log.debug("Request to get all Trabajadors");
+        Page<Trabajador> trabajadores = trabajadorRepository.findAll(pageable);
+        return trabajadores.map(this::fromEntityDTO);
     }
 
+
+    private TrabajadorDTO fromEntityDTO(Trabajador trabajador) {
+        TrabajadorDTO trabDTO = new TrabajadorDTO(trabajador);
+        trabDTO.setVentas_totales(trabajadorRepository.findVentasTotales(trabajador));
+        return trabDTO;
+    }
 
     /**
      * Get one trabajador by id.

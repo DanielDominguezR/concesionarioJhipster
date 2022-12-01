@@ -5,11 +5,7 @@ export interface ITrabajador {
   apellido?: string;
   cargo?: string;
   telefono?: number;
-}
-
-export interface IVentasTotales {
-  idVenta?: number;
-  totalVenta?: number;
+  ventas_totales?: number;
 }
 
 export class Trabajador implements ITrabajador {
@@ -19,6 +15,7 @@ export class Trabajador implements ITrabajador {
     public nombre?: string,
     public apellido?: string,
     public cargo?: string,
-    public telefono?: number
+    public telefono?: number,
+    public ventas_totales?: number
   ) {}
 }

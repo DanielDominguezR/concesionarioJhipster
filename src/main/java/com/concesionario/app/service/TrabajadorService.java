@@ -3,6 +3,7 @@ package com.concesionario.app.service;
 import com.concesionario.app.domain.CompraVenta;
 import com.concesionario.app.domain.Trabajador;
 import com.concesionario.app.domain.VentasTotales;
+import com.concesionario.app.service.dto.TrabajadorDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,5 +48,5 @@ public interface TrabajadorService {
      */
     void delete(Long id);
 
-    List<CompraVenta> getAllVentasTotales();
+    Page<TrabajadorDTO> findAllVentas(Pageable pageable);
 }
