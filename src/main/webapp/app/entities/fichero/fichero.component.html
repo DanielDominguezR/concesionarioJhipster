@@ -1,0 +1,98 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="concesionarioApp.fichero.home.title">Ficheroes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fichero" [routerLink]="['/fichero/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="concesionarioApp.fichero.home.createLabel">
+            Create new Fichero
+            </span>
+        </button>
+        <!-- <br>
+        <br>
+        <div class="form-control form-control-sm">
+        <input  id="formFileSm" type="file" (change)="onFileSelected($event)" #fileUpload/>
+        <button (click)="enviarFormulario()">Enviar</button>
+        </div> -->
+        <div class="row">
+            <div class="col-8">
+              <label class="btn btn-default p-0">
+                <input type="file" (change)="selectFile($event)" />
+              </label>
+            </div>
+
+            <div class="col-4">
+              <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+                Upload
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="currentFile" class="progress my-3">
+            <div
+              class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar"
+              attr.aria-valuenow="{{ progress }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: progress + '%' }"
+            >
+              {{ progress }}%
+            </div>
+          </div>
+
+          <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="ficheroes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="concesionarioApp.fichero.path">Path</span></th>
+            <th><span jhiTranslate="concesionarioApp.fichero.nombre_fichero">Nombre Fichero</span></th>
+            <th><span jhiTranslate="concesionarioApp.fichero.contentType">Content Type</span></th>
+            <th><span jhiTranslate="concesionarioApp.fichero.ficheros">Ficheros</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fichero of ficheroes ;trackBy: trackId">
+                <td><a [routerLink]="['/fichero', fichero.id, 'view' ]">{{fichero.id}}</a></td>
+                <td>{{fichero.path}}</td>
+                <td>{{fichero.nombre_fichero}}</td>
+                <td>{{fichero.contentType}}</td>
+                <td>
+                    <div *ngIf="fichero.ficheros">
+                        <a [routerLink]="['../gestor-fichero', fichero.ficheros?.id, 'view' ]" >{{fichero.ficheros?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/fichero', fichero.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/fichero', fichero.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'fichero', { outlets: { popup: fichero.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

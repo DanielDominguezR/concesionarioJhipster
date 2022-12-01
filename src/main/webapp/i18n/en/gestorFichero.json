@@ -1,0 +1,21 @@
+{
+  "concesionarioApp": {
+    "gestorFichero": {
+      "home": {
+        "title": "Gestor Ficheroes",
+        "createLabel": "Create a new Gestor Fichero",
+        "createOrEditLabel": "Create or edit a Gestor Fichero"
+      },
+      "created": "A new Gestor Fichero is created with identifier {{ param }}",
+      "updated": "A Gestor Fichero is updated with identifier {{ param }}",
+      "deleted": "A Gestor Fichero is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gestor Fichero {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestor Fichero"
+      },
+      "folder": "Folder"
+    }
+  }
+}

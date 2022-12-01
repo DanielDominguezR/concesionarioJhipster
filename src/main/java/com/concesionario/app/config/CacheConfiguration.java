@@ -47,6 +47,8 @@ public class CacheConfiguration {
             createCache(cm, com.concesionario.app.domain.Cliente.class.getName());
             createCache(cm, com.concesionario.app.domain.CompraVenta.class.getName());
             createCache(cm, com.concesionario.app.domain.Trabajador.class.getName());
+            createCache(cm, com.concesionario.app.domain.GestorFichero.class.getName());
+            createCache(cm, com.concesionario.app.domain.Fichero.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

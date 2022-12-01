@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fichero">
+            <h2><span jhiTranslate="concesionarioApp.fichero.detail.title">Fichero</span> {{fichero.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="concesionarioApp.fichero.path">Path</span></dt>
+                <dd>
+                    <span>{{fichero.path}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.fichero.nombre_fichero">Nombre Fichero</span></dt>
+                <dd>
+                    <span>{{fichero.nombre_fichero}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.fichero.contentType">Content Type</span></dt>
+                <dd>
+                    <span>{{fichero.contentType}}</span>
+                </dd>
+                <dt><span jhiTranslate="concesionarioApp.fichero.ficheros">Ficheros</span></dt>
+                <dd>
+                    <div *ngIf="fichero.ficheros">
+                        <a [routerLink]="['/gestor-fichero', fichero.ficheros?.id, 'view']">{{fichero.ficheros?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fichero', fichero.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

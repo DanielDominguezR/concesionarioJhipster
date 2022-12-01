@@ -1,0 +1,24 @@
+{
+  "concesionarioApp": {
+    "fichero": {
+      "home": {
+        "title": "Ficheroes",
+        "createLabel": "Crear nuevo Fichero",
+        "createOrEditLabel": "Crear o editar Fichero"
+      },
+      "created": "Un nuevo Fichero ha sido creado con el identificador {{ param }}",
+      "updated": "Un Fichero ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Fichero ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Fichero {{ id }}?"
+      },
+      "detail": {
+        "title": "Fichero"
+      },
+      "path": "Path",
+      "nombre_fichero": "Nombre Fichero",
+      "contentType": "Content Type",
+      "ficheros": "Ficheros"
+    }
+  }
+}

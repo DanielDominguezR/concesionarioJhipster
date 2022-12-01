@@ -19,6 +19,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'trabajador',
         loadChildren: './trabajador/trabajador.module#ConcesionarioTrabajadorModule'
+      },
+      {
+        path: 'gestor-fichero',
+        loadChildren: './gestor-fichero/gestor-fichero.module#ConcesionarioGestorFicheroModule'
+      },
+      {
+        path: 'fichero',
+        loadChildren: './fichero/fichero.module#ConcesionarioFicheroModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
